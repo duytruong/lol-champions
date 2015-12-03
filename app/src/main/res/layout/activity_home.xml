@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:columnCount="3" >
+    android:orientation="vertical"
+    tools:context="com.duyrau.lolchampions.HomeActivity">
 
-    <ImageView
-
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_column="0"
-        android:layout_columnSpan="1"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/hong" />
+        android:theme="@style/AppTheme.AppBarOverlay">
 
-    <ImageView
-        android:layout_height="wrap_content"
-        android:layout_column="1"
-        android:layout_columnSpan="1"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/hong" />
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" />
 
-    <ImageView
-        android:layout_height="wrap_content"
-        android:layout_column="2"
-        android:layout_columnSpan="1"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/hong" />
+    </android.support.design.widget.AppBarLayout>
 
+    <GridView
+        android:id="@+id/gridview_champions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center" />
 
-</GridLayout>
+</LinearLayout>
