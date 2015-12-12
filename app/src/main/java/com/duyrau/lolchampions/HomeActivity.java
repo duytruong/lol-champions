@@ -1,15 +1,14 @@
 package com.duyrau.lolchampions;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
 public class HomeActivity extends AppCompatActivity {
@@ -27,7 +26,8 @@ public class HomeActivity extends AppCompatActivity {
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(HomeActivity.this, "" + position, Toast.LENGTH_SHORT).show();
+                Intent championIntent = new Intent(getApplicationContext(), ChampionActivity.class);
+                startActivity(championIntent);
             }
         });
     }
@@ -49,6 +49,9 @@ public class HomeActivity extends AppCompatActivity {
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
+        }
+        if (id == R.id.action_search) {
+            Toast.makeText(getApplicationContext(), "Searching...", Toast.LENGTH_SHORT).show();
         }
 
         return super.onOptionsItemSelected(item);
