@@ -1,11 +1,13 @@
 package com.duyrau.lolchampions;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  * Created by duyrau on 29/11/2015.
@@ -32,7 +34,17 @@ public class ImageAdapter extends BaseAdapter {
     // create a new ImageView for each item referenced by the Adapter
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView;
+//        View itemView;
         if (convertView == null) {
+//            LayoutInflater inflater = (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            itemView = inflater.inflate(R.layout.grid_item_champion, parent, false);
+//            itemView = inflater.inflate(R.layout.grid_item_champion, null);
+//            ImageView imgView = (ImageView)itemView.findViewById(R.id.image_champion_avatar);
+//            TextView txtName = (TextView)itemView.findViewById(R.id.txt_champion_name);
+//            imgView.setImageResource(mThumbIds[position]);
+//            txtName.setText("Name here");
+
+
             // if it's not recycled, initialize some attributes
             imageView = new ImageView(mContext);
             imageView.setLayoutParams(new GridView.LayoutParams(120, 120));
@@ -40,6 +52,7 @@ public class ImageAdapter extends BaseAdapter {
             imageView.setPadding(8, 8, 8, 8);
         } else {
             imageView = (ImageView) convertView;
+//            itemView = convertView;
         }
 
         imageView.setImageResource(mThumbIds[position]);
@@ -48,16 +61,9 @@ public class ImageAdapter extends BaseAdapter {
 
     // references to our images
     private Integer[] mThumbIds = {
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7,
-            R.drawable.sample_0, R.drawable.sample_1,
-            R.drawable.sample_2, R.drawable.sample_3,
-            R.drawable.sample_4, R.drawable.sample_5,
-            R.drawable.sample_6, R.drawable.sample_7
+            R.drawable.aatrox, R.drawable.ahri,
+            R.drawable.blitzcrank, R.drawable.brand,
+            R.drawable.cassiopeia, R.drawable.renekton,
+            R.drawable.rengar, R.drawable.shyvana
     };
 }
