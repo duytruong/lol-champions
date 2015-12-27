@@ -1,10 +1,7 @@
 package com.duyrau.lolchampions;
 
-import android.app.SearchManager;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -13,13 +10,38 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
     private GridView gridView;
     private SearchView searchView;
+
+    // references to our images
+    private Integer[] mThumbIds = {
+            R.drawable.aatrox, R.drawable.ahri,
+            R.drawable.blitzcrank, R.drawable.brand,
+            R.drawable.cassiopeia, R.drawable.renekton,
+            R.drawable.rengar, R.drawable.shyvana
+    };
+
+    private String[] mChampions = {
+            "Aatrox", "Ahri",
+            "Blitzcrank", "Brand",
+            "Cassiopeia", "Renekton",
+            "Rengar", "Shyvana"
+    };
+
+    private List<Champion> createData() {
+        List<Champion> list = new ArrayList<>();
+        for (int i = 0; i < mChampions.length; i++) {
+            list.add(new Champion(mChampions[i], mThumbIds[i]));
+        }
+        return list;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +51,7 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
         setSupportActionBar(toolbar);
 
         gridView = (GridView) findViewById(R.id.gridview_champions);
-        gridView.setAdapter(new ImageAdapter(this));
+        gridView.setAdapter(new ImageAdapter(this, createData()));
         gridView.setTextFilterEnabled(true);
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

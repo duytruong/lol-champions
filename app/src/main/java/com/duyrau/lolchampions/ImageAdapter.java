@@ -16,13 +16,16 @@ import java.util.List;
 public class ImageAdapter extends BaseAdapter implements Filterable {
     private Context mContext;
     private Filter mFilter;
+    private List<Champion> mObjects;
+    private List<Champion> mOriginals;
 
-    public ImageAdapter(Context c) {
+    public ImageAdapter(Context c, List<Champion> objects) {
         mContext = c;
+        mObjects = mOriginals = objects;
     }
 
     public int getCount() {
-        return mThumbIds.length;
+        return mObjects.size();
     }
 
     public Object getItem(int position) {
@@ -45,26 +48,10 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
         }
         ImageView imgView = (ImageView) view.findViewById(R.id.image_champion_avatar);
         TextView txtName = (TextView) view.findViewById(R.id.txt_champion_name);
-        imgView.setImageResource(mThumbIds[position]);
-        txtName.setText(mChampions[position]);
+        imgView.setImageResource(mObjects.get(position).getImageId());
+        txtName.setText(mObjects.get(position).getName());
         return view;
     }
-
-    // references to our images
-    private Integer[] mThumbIds = {
-            R.drawable.aatrox, R.drawable.ahri,
-            R.drawable.blitzcrank, R.drawable.brand,
-            R.drawable.cassiopeia, R.drawable.renekton,
-            R.drawable.rengar, R.drawable.shyvana
-    };
-
-    private String[] mChampions = {
-            "Aatrox", "Ahri",
-            "Blitzcrank", "Brand",
-            "Cassiopeia", "Renekton",
-            "Rengar", "Shyvana"
-    };
-
 
     @Override
     public Filter getFilter() {
@@ -81,16 +68,16 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
             FilterResults result = new FilterResults();
             if (constraint == null || constraint.length() == 0) {
                 // No filter implemented we return all the list
-                result.values = mChampions;
-                result.count = mChampions.length;
+                result.values = mOriginals;
+                result.count = mOriginals.size();
             }
             else {
                 // We perform filtering operation
-                List<String> res = new ArrayList<String>();
+                List<Champion> res = new ArrayList<Champion>();
 
-                for (int i = 0; i < mChampions.length; i++) {
-                    if (mChampions[i].toUpperCase().startsWith(constraint.toString().toUpperCase()))
-                        res.add(mChampions[i]);
+                for (Champion champ : mOriginals) {
+                    if (champ.getName().toUpperCase().contains(constraint.toString().toUpperCase()))
+                        res.add(champ);
                 }
 
                 result.values = res;
@@ -102,12 +89,11 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-
-            if (results.count == 0)
-                notifyDataSetInvalidated();
-            else {
-                planetList = (List<Planet>) results.values;
+            mObjects = (List<Champion>) results.values;
+            if (results.count > 0) {
                 notifyDataSetChanged();
+            } else {
+                notifyDataSetInvalidated();
             }
         }
     }
