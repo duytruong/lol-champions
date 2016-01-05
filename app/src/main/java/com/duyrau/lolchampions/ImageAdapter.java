@@ -64,6 +64,7 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
     private class SimpleFilter extends Filter {
 
         @Override
+
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults result = new FilterResults();
             if (constraint == null || constraint.length() == 0) {

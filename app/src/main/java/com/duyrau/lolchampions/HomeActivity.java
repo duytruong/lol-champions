@@ -25,6 +25,10 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
             R.drawable.aatrox, R.drawable.ahri,
             R.drawable.blitzcrank, R.drawable.brand,
             R.drawable.cassiopeia, R.drawable.renekton,
+            R.drawable.rengar, R.drawable.shyvana,
+            R.drawable.aatrox, R.drawable.ahri,
+            R.drawable.blitzcrank, R.drawable.brand,
+            R.drawable.cassiopeia, R.drawable.renekton,
             R.drawable.rengar, R.drawable.shyvana
     };
 
@@ -32,7 +36,8 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
             "Aatrox", "Ahri",
             "Blitzcrank", "Brand",
             "Cassiopeia", "Renekton",
-            "Rengar", "Shyvana"
+            "Rengar", "Shyvana",
+            "Zed", "Lee sin", "Yasuo", "Orianna", "Lux", "Gangplank","Azir","Sona"
     };
 
     private List<Champion> createData() {
