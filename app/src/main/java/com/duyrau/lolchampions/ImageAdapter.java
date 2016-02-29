@@ -1,9 +1,16 @@
 package com.duyrau.lolchampions;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
@@ -48,9 +55,37 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
         }
         ImageView imgView = (ImageView) view.findViewById(R.id.image_champion_avatar);
         TextView txtName = (TextView) view.findViewById(R.id.txt_champion_name);
-        imgView.setImageResource(mObjects.get(position).getImageId());
+//        imgView.setImageResource(mObjects.get(position).getImageId());
+        Bitmap bmp = loadBitmapPiece(position);
+        imgView.setImageBitmap(bmp);
         txtName.setText(mObjects.get(position).getName());
         return view;
+    }
+
+
+    private Bitmap loadBitmapPiece(int position) {
+        int size = convertDpToPixel(48);
+        Bitmap champion0 = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.champion0);
+        Bitmap result = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565);
+
+        Canvas canvas = new Canvas(result);
+        Rect src = new Rect(size * position, 0, size + size * position, size);
+        RectF dst = new RectF(0, 0, size, size);
+
+        canvas.drawBitmap(champion0, src, dst, null);
+        champion0.recycle();
+        return result;
+    }
+
+    private int getDeviceDensity() {
+        DisplayMetrics metrics = new DisplayMetrics();
+        WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+        windowManager.getDefaultDisplay().getMetrics(metrics);
+        return metrics.densityDpi;
+    }
+
+    private int convertDpToPixel(float dp) {
+        return (int) (dp * (getDeviceDensity() / 160f));
     }
 
     @Override
