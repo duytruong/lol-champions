@@ -55,7 +55,6 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
         }
         ImageView imgView = (ImageView) view.findViewById(R.id.image_champion_avatar);
         TextView txtName = (TextView) view.findViewById(R.id.txt_champion_name);
-//        imgView.setImageResource(mObjects.get(position).getImageId());
         Bitmap bmp = loadBitmapPiece(position);
         imgView.setImageBitmap(bmp);
         txtName.setText(mObjects.get(position).getName());
@@ -69,7 +68,11 @@ public class ImageAdapter extends BaseAdapter implements Filterable {
         Bitmap result = Bitmap.createBitmap(size, size, Bitmap.Config.RGB_565);
 
         Canvas canvas = new Canvas(result);
-        Rect src = new Rect(size * position, 0, size + size * position, size);
+        int leftTopX = position % 10;
+        int leftTopY = position / 10;
+        int rightBottomX = leftTopX + 1;
+        int rightBottomY = leftTopY + 1;
+        Rect src = new Rect(size * leftTopX, leftTopY * size, size * rightBottomX, size * rightBottomY);
         RectF dst = new RectF(0, 0, size, size);
 
         canvas.drawBitmap(champion0, src, dst, null);

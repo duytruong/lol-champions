@@ -37,13 +37,16 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
             "Akali", "Alistar",
             "Amumu", "Anivia",
             "Annie", "Ashe",
-            "Azir", "Blitcrank", "Brand", "Braum", "Caitlyn", "Cassiopeia","Cho'gath","Corki"
+            "Azir", "Blitcrank", "Brand", "Braum", "Caitlyn",
+            "Cassiopeia","Cho'gath","Corki",
+            "Darius", "Diana", "Draven", "Dr. Mundo", "Elise", "Evelyn", "Ezreal",
+            "Fiddlestick", "Fiora", "Fizz", "Galio", "Gangplank", "Garen", "Gnar"
     };
 
     private List<Champion> createData() {
         List<Champion> list = new ArrayList<>();
         for (int i = 0; i < mChampions.length; i++) {
-            list.add(new Champion(mChampions[i], mThumbIds[i]));
+            list.add(new Champion(mChampions[i], 0));
         }
         return list;
     }
