@@ -34,10 +34,10 @@ public class HomeActivity extends AppCompatActivity implements SearchView.OnQuer
 
     private String[] mChampions = {
             "Aatrox", "Ahri",
-            "Blitzcrank", "Brand",
-            "Cassiopeia", "Renekton",
-            "Rengar", "Shyvana",
-            "Zed", "Lee sin", "Yasuo", "Orianna", "Lux", "Gangplank","Azir","Sona"
+            "Akali", "Alistar",
+            "Amumu", "Anivia",
+            "Annie", "Ashe",
+            "Azir", "Blitcrank", "Brand", "Braum", "Caitlyn", "Cassiopeia","Cho'gath","Corki"
     };
 
     private List<Champion> createData() {
